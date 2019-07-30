@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import NetworkKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
