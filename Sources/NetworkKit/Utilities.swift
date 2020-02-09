@@ -25,7 +25,7 @@ extension URLRequest {
 
 extension Data {
     
-    func writeToDiskAsJSON(name:String) {
+    func debugWriteToDiskAsJSON(name:String) {
         guard let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return }
         let name = name + ".json"
         let url = docs.appendingPathComponent(name)

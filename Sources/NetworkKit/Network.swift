@@ -9,7 +9,7 @@ import Foundation
 
 public struct NetworkRequest<T:Decodable> {
 
-    public typealias Parser = (Data) throws -> (T)
+    public typealias Parser = (Data?) throws -> (T)
     public typealias ResponseValidator = (Int) -> (Bool)
 
     public let identifier:String
@@ -25,7 +25,11 @@ public struct NetworkRequest<T:Decodable> {
         return "\(uuid.prefix(5)) \(displayLabel)"
     }
     
-    public var parser:Parser = { try JSONDecoder().decode(T.self, from: $0) }
+    public var parser:Parser = { data in
+        guard let data = data else { throw NetworkError.noParserProvided }
+        return try JSONDecoder().decode(T.self, from: data)
+        
+    }
     public var validator:ResponseValidator = { code in 200...299 ~= code }
     
     public init(identifier:String, urlRequest:URLRequest) {
@@ -149,28 +153,24 @@ public class Network {
                 
                 result = .failure(.invalidResponse(response.statusCode))
             
-            } else if let data = data, data.count > 0 {
+            }  else if let error = error {
+                
+                result = .failure(.network(error))
+            
+            } else {
 
                 if LaunchArguments.writeResponseToDisk {
-                    data.writeToDiskAsJSON(name: request.label)
+                    data?.debugWriteToDiskAsJSON(name: request.label)
                 }
                 if LaunchArguments.logResponse {
-                    print(data.asJSONString())
+                    print(data?.asJSONString() ?? "No data")
                 }
                 do {
                     let res = try request.parser(data)
                     result = .success(res)
                 } catch let error {
-//                    print(error)
                     result = .failure(.parsingError(error))
                 }
-            } else if let error = error {
-                
-                result = .failure(.network(error))
-            
-            } else {
-                
-                result = .failure(.unknown)
             }
             self?.removeOperation(identifier: request.identifier)
 
