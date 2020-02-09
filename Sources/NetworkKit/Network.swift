@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreFoundation
 
 public struct NetworkRequest<T:Decodable> {
 
@@ -277,18 +278,22 @@ final class DownloadOperation:BaseAsyncOperation {
     var task : URLSessionDataTask?
     var request:URLRequest
     var completion:DownloadCompletion
+    #if os(iOS) || os(OSX) || os(watchOS)
     var obsToken:NSKeyValueObservation? = nil
+    #endif
 
     init(session:URLSession, request:URLRequest, completion:@escaping DownloadCompletion) {
         self.session = session
         self.completion = completion
         self.request = request
         super.init()
+        #if os(iOS) || os(OSX) || os(watchOS)
         obsToken = self.observe(\.isCancelled, options:[.new]) { [weak self] op, change in
             if let isCancelled = change.newValue, isCancelled == true {
                 self?.task?.cancel()
             }
         }
+        #endif
     }
 
     override func execute() {
