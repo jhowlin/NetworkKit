@@ -44,10 +44,10 @@ extension Data {
             let json = try JSONSerialization.jsonObject(with: self, options: [])
             var options:JSONSerialization.WritingOptions = [.prettyPrinted]
             #if os(iOS) || os(OSX) || os(watchOS)
-            if #available(iOS 13.0, *) {
+            if #available(iOS 13.0, *), #available(watchOS 6.0, *) {
                 options = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
             }
-            if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, *), #available(watchOS 4.0, *) {
                 options = [.prettyPrinted, .sortedKeys]
             }
             #endif
