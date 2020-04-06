@@ -14,6 +14,7 @@
 		9673E4D622F042CC0009E409 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9673E4D522F042CC0009E409 /* Assets.xcassets */; };
 		9673E4D922F042CC0009E409 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9673E4D722F042CC0009E409 /* LaunchScreen.storyboard */; };
 		9673E4E322F044020009E409 /* NetworkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9673E4E222F044020009E409 /* NetworkKit */; };
+		96F1977A243AAA2C00E147F1 /* NetworkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96F19779243AAA2C00E147F1 /* NetworkKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +26,7 @@
 		9673E4D522F042CC0009E409 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9673E4D822F042CC0009E409 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9673E4DA22F042CC0009E409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9673E4E022F043F80009E409 /* NetworkKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = NetworkKit; path = ..; sourceTree = "<group>"; };
+		96F1977B243AAA3C00E147F1 /* NetworkKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = NetworkKit; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F1977A243AAA2C00E147F1 /* NetworkKit in Frameworks */,
 				9673E4E322F044020009E409 /* NetworkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,7 +45,7 @@
 		9673E4C022F042CB0009E409 = {
 			isa = PBXGroup;
 			children = (
-				9673E4E022F043F80009E409 /* NetworkKit */,
+				96F1977B243AAA3C00E147F1 /* NetworkKit */,
 				9673E4CB22F042CB0009E409 /* NetworkKitExample */,
 				9673E4CA22F042CB0009E409 /* Products */,
 				9673E4E122F044020009E409 /* Frameworks */,
@@ -97,6 +99,7 @@
 			name = NetworkKitExample;
 			packageProductDependencies = (
 				9673E4E222F044020009E409 /* NetworkKit */,
+				96F19779243AAA2C00E147F1 /* NetworkKit */,
 			);
 			productName = NetworkKitExample;
 			productReference = 9673E4C922F042CB0009E409 /* NetworkKitExample.app */;
@@ -126,6 +129,9 @@
 				Base,
 			);
 			mainGroup = 9673E4C022F042CB0009E409;
+			packageReferences = (
+				96F19778243AAA2C00E147F1 /* XCRemoteSwiftPackageReference "NetworkKit" */,
+			);
 			productRefGroup = 9673E4CA22F042CB0009E409 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,9 +360,25 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		96F19778243AAA2C00E147F1 /* XCRemoteSwiftPackageReference "NetworkKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:jhowlin/NetworkKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		9673E4E222F044020009E409 /* NetworkKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = NetworkKit;
+		};
+		96F19779243AAA2C00E147F1 /* NetworkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96F19778243AAA2C00E147F1 /* XCRemoteSwiftPackageReference "NetworkKit" */;
 			productName = NetworkKit;
 		};
 /* End XCSwiftPackageProductDependency section */

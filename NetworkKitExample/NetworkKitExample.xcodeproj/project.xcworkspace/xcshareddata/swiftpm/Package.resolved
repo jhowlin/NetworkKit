@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "NetworkKit",
+        "repositoryURL": "git@github.com:jhowlin/NetworkKit.git",
+        "state": {
+          "branch": "master",
+          "revision": "1b23dd16d9e20de0ce134acfacfec7d41bab0fce",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -7,6 +7,9 @@
 
 import Foundation
 import CoreFoundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 public struct NetworkRequest<T:Decodable> {
 
